@@ -49,8 +49,8 @@ const reducer = (prevState, action) => {
   } else if (action.type === 'loading') {
     return {
       ...prevState,
-      requestStatus: 'loading'
-    }
+      requestStatus: 'loading',
+    };
   }
 };
 
