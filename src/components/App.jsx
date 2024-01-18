@@ -65,10 +65,12 @@ export const App = () => {
     bigImgUrl: '',
   });
 
+  const { searchParameters, page } = galleryParameters;
+
   useEffect(() => {
-    if (galleryParameters.searchParameters) {
+    if (searchParameters) {
       changeGalleryParameters({ type: 'loading' });
-      getImages(galleryParameters)
+      getImages(searchParameters, page)
         .then(response => {
           if (response.ok) {
             return response.json();
@@ -82,14 +84,14 @@ export const App = () => {
           changeGalleryParameters({
             type: 'addImg',
             data,
-            searchParameters: galleryParameters.searchParameters,
+            searchParameters: searchParameters,
           });
         })
         .catch(error => {
           changeGalleryParameters({ error, type: 'error' });
         });
     }
-  });
+  }, [searchParameters, page]);
 
   const submitForm = parameters => {
     changeGalleryParameters({ parameters, type: 'submit' });
