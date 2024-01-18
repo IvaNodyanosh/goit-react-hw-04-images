@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 const body = document.querySelector('body');
 
 export const Modal = ({ url, addBigImg }) => {
-  console.log(url);
+  
+  console.log(url)
   const clickEsc = event => {
     if (event.code === 'Escape') {
       addBigImg('');
@@ -22,7 +23,7 @@ export const Modal = ({ url, addBigImg }) => {
 
     return () => {
       body.removeEventListener('keydown', clickEsc);
-      body.style.position = 'static';
+      (body.style.position = 'static')
     };
   });
 

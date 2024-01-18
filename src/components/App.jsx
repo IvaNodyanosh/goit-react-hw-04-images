@@ -49,8 +49,8 @@ const reducer = (prevState, action) => {
   } else if (action.type === 'loading') {
     return {
       ...prevState,
-      requestStatus: 'loading',
-    };
+      requestStatus: 'loading'
+    }
   }
 };
 
@@ -65,10 +65,8 @@ export const App = () => {
     bigImgUrl: '',
   });
 
-  const {searchParameters, page} = galleryParameters
-
   useEffect(() => {
-    if (searchParameters) {
+    if (galleryParameters.searchParameters) {
       changeGalleryParameters({ type: 'loading' });
       getImages(galleryParameters)
         .then(response => {
@@ -84,14 +82,14 @@ export const App = () => {
           changeGalleryParameters({
             type: 'addImg',
             data,
-            searchParameters: searchParameters,
+            searchParameters: galleryParameters.searchParameters,
           });
         })
         .catch(error => {
           changeGalleryParameters({ error, type: 'error' });
         });
     }
-  }, [searchParameters, page]);
+  }, [galleryParameters.searchParameters, galleryParameters.page]);
 
   const submitForm = parameters => {
     changeGalleryParameters({ parameters, type: 'submit' });
