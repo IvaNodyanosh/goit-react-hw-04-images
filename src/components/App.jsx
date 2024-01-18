@@ -89,7 +89,7 @@ export const App = () => {
           changeGalleryParameters({ error, type: 'error' });
         });
     }
-  }, [galleryParameters.searchParameters, galleryParameters.page]);
+  });
 
   const submitForm = parameters => {
     changeGalleryParameters({ parameters, type: 'submit' });
