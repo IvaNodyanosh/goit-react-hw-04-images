@@ -1,6 +1,5 @@
 import css from './ImageGallery.module.css';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
-import { nanoid } from 'nanoid';
 
 export const ImageGallery = ({ addBigImg, images }) => {
   return (
@@ -13,7 +12,7 @@ export const ImageGallery = ({ addBigImg, images }) => {
           src={webformatURL}
           action={largeImageURL}
           name={tags}
-          key={nanoid()}
+          key={webformatURL}
         />
       ))}
     </ul>
