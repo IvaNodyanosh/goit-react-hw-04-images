@@ -34,12 +34,10 @@ const reducer = (prevState, action) => {
   } else if (action.type === 'submit') {
     return {
       ...prevState,
+      ...action.data,
       searchParameters: action.parameters,
-      images: [],
-      page: 1,
-      error: '',
     };
-  } else if (action.type === 'decrement') {
+  } else if (action.type === 'increment') {
     return { ...prevState, page: prevState.page + 1 };
   } else if (action.type === 'addBigImg') {
     return {
@@ -49,8 +47,8 @@ const reducer = (prevState, action) => {
   } else if (action.type === 'loading') {
     return {
       ...prevState,
-      requestStatus: 'loading'
-    }
+      requestStatus: 'loading',
+    };
   }
 };
 
@@ -94,7 +92,11 @@ export const App = () => {
   }, [searchParameters, page]);
 
   const submitForm = parameters => {
-    changeGalleryParameters({ parameters, type: 'submit' });
+    changeGalleryParameters({
+      parameters,
+      type: 'submit',
+      data: { images: [], page: 1, error: '' },
+    });
   };
 
   const addBigImg = bigImgUrl => {
@@ -113,7 +115,7 @@ export const App = () => {
         Number(galleryParameters.totalImages) / 12 >=
           galleryParameters.page && (
           <Button
-            decrementPage={() => changeGalleryParameters({ type: 'decrement' })}
+            incrementPage={() => changeGalleryParameters({ type: 'increment' })}
           />
         )}
 
